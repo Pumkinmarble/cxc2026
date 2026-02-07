@@ -76,6 +76,7 @@ export async function textToSpeech(params: {
       body: JSON.stringify({
         text: params.text,
         model_id: "eleven_multilingual_v2",
+        output_format: "mp3_44100_128",
       }),
     }
   );
