@@ -41,7 +41,7 @@ export default function LoginPage() {
           }}
         >
           <h1 className="text-3xl font-bold text-center mb-4" style={{ color: '#1F2937' }}>
-            Welcome to Echo
+            Welcome to Ditto!
           </h1>
 
           <p className="text-center text-gray-600 mb-8">
@@ -52,7 +52,7 @@ export default function LoginPage() {
           <div className="space-y-4">
             <a
               href="/api/auth/login"
-              className="block w-full py-3 bg-gradient-to-r from-purple-600 to-blue-600 text-white rounded-lg font-semibold hover:opacity-90 transition text-center"
+              className="acrylic-button block w-full py-3 rounded-lg font-semibold hover:opacity-90 transition text-center text-gray-800"
             >
               Sign In with Auth0
             </a>
@@ -72,13 +72,13 @@ export default function LoginPage() {
             </a>
           </div>
 
-          {/* Divider */}
+          {/* Development Only Divider */}
           <div className="relative my-6">
             <div className="absolute inset-0 flex items-center">
               <div className="w-full border-t border-gray-300"></div>
             </div>
             <div className="relative flex justify-center text-sm">
-              <span className="px-2 bg-white text-gray-500">Development Only</span>
+              <span className="px-2 text-gray-500" style={{ backgroundColor: '#FFF8F0' }}>Development Only</span>
             </div>
           </div>
 
@@ -92,7 +92,7 @@ export default function LoginPage() {
 
           {/* Info Text */}
           <p className="text-center text-sm text-gray-600 mt-6">
-            New to Echo? Creating an account is automatic on first login.
+            New to Ditto? Creating an account is automatic on first login.
           </p>
         </div>
       </div>
