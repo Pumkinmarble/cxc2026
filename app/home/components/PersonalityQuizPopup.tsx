@@ -34,7 +34,7 @@ export default function PersonalityQuizPopup({
 
   const handleSubmitAnswer = () => {
     const answer = parseInt(inputValue);
-    if (answer >= 1 && answer <= 5) {
+    if (answer >= 1 && answer <= 5 && question) {
       const newAnswers = [...answers, answer as Response];
       setAnswers(newAnswers);
 
@@ -76,8 +76,10 @@ export default function PersonalityQuizPopup({
 
     finalAnswers.forEach((response, index) => {
       const question = QUESTIONS[index];
-      const score = calculateScore(response, question.direction);
-      scores[question.dimension] += score;
+      if (question) {
+        const score = calculateScore(response, question.direction);
+        scores[question.dimension] += score;
+      }
     });
 
     const personalityType = calculatePersonalityType(scores);
@@ -94,18 +96,27 @@ export default function PersonalityQuizPopup({
 
   const saveResultsToFile = async (type: PersonalityType, description: any, dimensions: any[]) => {
     try {
-      await fetch('/api/save-answer', {
+      // Save to Supabase
+      const response = await fetch('/api/personality/save', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json',
         },
         body: JSON.stringify({
-          questionNum: 'RESULTS',
-          questionText: `\n=== QUIZ RESULTS ===\nPersonality Type: ${type}\nDescription: ${description.baseDescription}\nIdentity: ${description.identityDescription}\n\nDimension Breakdown:\n${dimensions.map(d => `${d.name}: ${d.percentage}%`).join('\n')}`,
-          answer: '',
+          personalityType: type,
+          description,
+          dimensions,
           sessionId,
         }),
       });
+
+      const data = await response.json();
+
+      if (data.success) {
+        console.log('✅ Personality results saved to Supabase!', data);
+      } else {
+        console.error('❌ Failed to save to Supabase:', data.error);
+      }
     } catch (error) {
       console.error('Failed to save results:', error);
     }
@@ -188,7 +199,7 @@ export default function PersonalityQuizPopup({
             <div className="flex-1 flex flex-col justify-center">
               <div className="mb-8">
                 <p className="text-xl text-gray-800 mb-2">
-                  {currentQuestion + 1}. {question.text}
+                  {currentQuestion + 1}. {question?.text}
                 </p>
                 <p className="text-sm text-gray-500 italic">
                   Answer (1-5): 1 = Strongly Disagree, 5 = Strongly Agree
