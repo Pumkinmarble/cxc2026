@@ -4,9 +4,9 @@ Email: demo-1770505071914@echo.ai
 Personality Type: ESTJ-A
 
 PERSONALITY DIMENSIONS:
-- undefined (NaN%) - undefined
-- undefined (NaN%) - undefined
-- undefined (NaN%) - undefined
-- undefined (NaN%) - undefined
-- undefined (NaN%) - undefined
+- Extraversion (E): 0%
+- Sensing (S): 0%
+- Thinking (T): 0%
+- Judging (J): 0%
+- Assertive (A): 0%
 

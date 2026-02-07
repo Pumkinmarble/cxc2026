@@ -56,8 +56,7 @@ export class EchoFromDB {
 
     text += `PERSONALITY DIMENSIONS:\n`;
     dimensions.forEach((dim: any) => {
-      const percentage = Math.round((dim.score / dim.maxScore) * 100);
-      text += `- ${dim.dimension} (${percentage}%) - ${dim.tendency}\n`;
+      text += `- ${dim.name}: ${dim.percentage}%\n`;
     });
 
     text += `\n`;

@@ -46,8 +46,8 @@ export async function GET(request: Request) {
 
     personalityText += `PERSONALITY DIMENSIONS:\n`;
     dimensions.forEach((dim: any) => {
-      const percentage = Math.round((dim.score / dim.maxScore) * 100);
-      personalityText += `- ${dim.dimension} (${percentage}%) - ${dim.tendency}\n`;
+      
+      personalityText += `- ${dim.name}: ${dim.percentage}%\n`;
     });
 
     personalityText += `\n`;
