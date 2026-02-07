@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import VoiceRecorder from "../../components/VoiceRecorder";
+import EchoLogo from "../../components/EchoLogo";
 
 const DEFAULT_SCRIPT =
   "Hello! This is my Echo voice sample. I'm excited to share a few memories and stories from my life. I grew up loving music, long walks, and late-night conversations with friends. Over the years, I learned to value curiosity, kindness, and showing up for the people I care about. This recording will help my digital twin speak in a way that feels like me.";
@@ -80,15 +81,19 @@ export default function VoiceTestPage() {
     audioRef.current?.play();
   };
 
+
   return (
     <div className="min-h-screen bg-slate-50 px-6 py-10 text-slate-900">
       <div className="mx-auto flex w-full max-w-3xl flex-col gap-6">
-        <header className="space-y-2">
-          <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Echo Voice Module</p>
-          <h1 className="text-3xl font-semibold">Voice cloning + AI personality demo</h1>
-          <p className="text-sm text-slate-600">
-            Record a voice sample, then ask questions — the AI responds in that person&apos;s personality and voice.
-          </p>
+        <header className="flex items-start gap-4">
+          <EchoLogo size={56} isActive={isSpeaking} />
+          <div className="space-y-1">
+            <p className="text-sm font-semibold uppercase tracking-wide text-slate-500">Echo Voice Module</p>
+            <h1 className="text-3xl font-semibold">Voice cloning + AI personality demo</h1>
+            <p className="text-sm text-slate-600">
+              Record a voice sample, then ask questions — the AI responds in that person&apos;s personality and voice.
+            </p>
+          </div>
         </header>
 
         <section className="rounded-lg border border-slate-200 bg-white p-4 shadow-sm">
