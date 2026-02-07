@@ -130,9 +130,11 @@ export class AvatarRenderer {
       if (!mesh.morphTargetDictionary || !mesh.morphTargetInfluences) return;
 
       Object.entries(shapes).forEach(([shapeName, value]) => {
-        const index = mesh.morphTargetDictionary[shapeName];
-        if (index !== undefined) {
-          mesh.morphTargetInfluences[index] = value;
+        if (mesh.morphTargetDictionary) {
+          const index = mesh.morphTargetDictionary[shapeName];
+          if (index !== undefined && mesh.morphTargetInfluences) {
+            mesh.morphTargetInfluences[index] = value;
+          }
         }
       });
     });

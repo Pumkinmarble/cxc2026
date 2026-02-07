@@ -58,7 +58,7 @@ export class BasicLipSync {
    * Get current mouth opening (0-1) based on audio amplitude
    */
   getCurrentMouthOpening(): number {
-    this.analyser.getByteFrequencyData(this.dataArray);
+    this.analyser.getByteFrequencyData(this.dataArray as Uint8Array);
 
     // Calculate average amplitude
     let sum = 0;

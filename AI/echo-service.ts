@@ -73,11 +73,12 @@ Remember: You are representing this person's digital identity. Be thoughtful and
       throw new Error("Must call initialize() before uploading diary entries");
     }
 
+    const threadId = this.thread.thread_id!;
     console.log(`📝 Uploading ${entries.length} diary entries...`);
 
     for (let i = 0; i < entries.length; i++) {
-      const entry = entries[i];
-      await this.client.addDiaryEntry(this.thread.thread_id, entry, {
+      const entry = entries[i]!;
+      await this.client.addDiaryEntry(threadId, entry, {
         entry_number: i + 1,
         timestamp: new Date().toISOString(),
       });
@@ -117,8 +118,9 @@ Remember: You are representing this person's digital identity. Be thoughtful and
       throw new Error("Must call initialize() before asking questions");
     }
 
+    const threadId = this.thread.thread_id!;
     console.log(`\n❓ Question: ${question}`);
-    const response = await this.client.query(this.thread.thread_id, question);
+    const response = await this.client.query(threadId, question);
     console.log(`💬 Response: ${response}\n`);
 
     return response;

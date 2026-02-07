@@ -47,6 +47,9 @@
   "exclude": [
     "node_modules",
     "dist",
-    ".next"
+    ".next",
+    "ui/experimentation",
+    "voice_module",
+    "auth_module"
   ]
 }
