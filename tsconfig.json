@@ -51,6 +51,7 @@
     "ui/experimentation",
     "experiments",
     "voice_module",
-    "auth_module"
+    "auth_module",
+    "solana_module"
   ]
 }
