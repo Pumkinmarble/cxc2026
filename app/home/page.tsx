@@ -872,10 +872,21 @@ export default function HomePage() {
                   e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.color = '';
                 }}
-                onClick={() => {
-                  // TODO: Add clear data logic
-                  setShowClearConfirm(false);
-                  setMenuOpen(false);
+                onClick={async () => {
+                  try {
+                    const res = await fetch('/api/user/clear-data', { method: 'POST' });
+                    const data = await res.json();
+                    if (data.success) {
+                      localStorage.removeItem('personalityQuizResults');
+                      setShowClearConfirm(false);
+                      setMenuOpen(false);
+                      window.location.reload();
+                    } else {
+                      console.error('Failed to clear data:', data.error);
+                    }
+                  } catch (err) {
+                    console.error('Failed to clear data:', err);
+                  }
                 }}
               >
                 Clear
@@ -964,12 +975,20 @@ export default function HomePage() {
                   e.currentTarget.style.background = 'transparent';
                   e.currentTarget.style.color = '';
                 }}
-                onClick={() => {
+                onClick={async () => {
                   if (deleteConfirmText === 'I want to delete my account') {
-                    // TODO: Add delete account logic
-                    setShowDeleteConfirm(false);
-                    setDeleteConfirmText('');
-                    setMenuOpen(false);
+                    try {
+                      const res = await fetch('/api/user/delete', { method: 'POST' });
+                      const data = await res.json();
+                      if (data.success) {
+                        localStorage.removeItem('personalityQuizResults');
+                        window.location.href = '/api/auth/logout';
+                      } else {
+                        console.error('Failed to delete account:', data.error);
+                      }
+                    } catch (err) {
+                      console.error('Failed to delete account:', err);
+                    }
                   }
                 }}
               >
