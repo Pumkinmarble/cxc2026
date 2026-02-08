@@ -178,6 +178,12 @@ export async function POST(req: NextRequest) {
       throw diaryError;
     }
 
+    // Clear assistant so next question rebuilds with new diary entry
+    await supabaseAdmin
+      .from('users')
+      .update({ assistant_id: null, thread_id: null })
+      .eq('id', userId);
+
     console.log('✅ Diary entry saved successfully!');
 
     return NextResponse.json({

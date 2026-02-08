@@ -88,6 +88,12 @@ export async function POST(request: Request) {
       throw diaryError;
     }
 
+    // Clear assistant so next question rebuilds with new diary entry
+    await supabaseAdmin
+      .from('users')
+      .update({ assistant_id: null, thread_id: null })
+      .eq('id', userId);
+
     return NextResponse.json({
       success: true,
       message: 'Diary entry saved successfully!',

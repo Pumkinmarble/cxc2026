@@ -76,6 +76,8 @@ export async function POST(request: Request) {
         personality_completed: true,
         personality_type: personalityType,
         personality_data: personalityData,
+        assistant_id: null,  // Clear so next question rebuilds with new personality
+        thread_id: null,
       })
       .eq('id', userId);
 
