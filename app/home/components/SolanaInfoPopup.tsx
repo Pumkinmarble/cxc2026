@@ -8,12 +8,13 @@ interface SolanaInfoPopupProps {
   darkMode: boolean;
 }
 
-// Mock transaction signatures - in real app, these would come from stored blockchain commits
-const mockSignatures = [
-  '5UfDuX...7Kp3xVz8mNwQ9rT2sYbA4cE6gH8jL0nP',
-  '3RtYwE...9Bm4pZx2kQnS7vD0fH3jL5oR8tU1wX',
-  '8GhJkL...4Vc6nRx0mPqS2uW5yA7cF9eH1iK3o',
-];
+interface ProfileResponse {
+  success: boolean;
+  user?: {
+    solanaTxHash?: string | null;
+    blockchainCommittedAt?: string | null;
+  };
+}
 
 export default function SolanaInfoPopup({
   isOpen,
@@ -23,17 +24,51 @@ export default function SolanaInfoPopup({
   const [localMousePos, setLocalMousePos] = useState({ x: 0, y: 0 });
   const [localHovering, setLocalHovering] = useState(false);
   const [timestamp, setTimestamp] = useState('');
+  const [txSignature, setTxSignature] = useState<string | null>(null);
+  const [loading, setLoading] = useState(false);
 
   useEffect(() => {
-    setTimestamp(new Date().toLocaleString('en-US', {
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric',
-      hour: '2-digit',
-      minute: '2-digit',
-      second: '2-digit',
-    }));
+    if (!isOpen) return;
+
+    const loadProfile = async () => {
+      setLoading(true);
+      try {
+        const response = await fetch('/api/user/profile');
+        const data: ProfileResponse = await response.json();
+        if (data?.user?.solanaTxHash) {
+          setTxSignature(data.user.solanaTxHash);
+        } else {
+          setTxSignature(null);
+        }
+
+        if (data?.user?.blockchainCommittedAt) {
+          setTimestamp(new Date(data.user.blockchainCommittedAt).toLocaleString('en-US', {
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric',
+            hour: '2-digit',
+            minute: '2-digit',
+            second: '2-digit',
+          }));
+        } else {
+          setTimestamp('—');
+        }
+      } catch (error) {
+        console.error('Failed to load profile:', error);
+        setTxSignature(null);
+        setTimestamp('—');
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadProfile();
   }, [isOpen]);
+
+  const displaySignature = (sig: string) => {
+    if (sig.length <= 16) return sig;
+    return `${sig.slice(0, 6)}...${sig.slice(-6)}`;
+  };
 
   const popupBg = darkMode
     ? `linear-gradient(90deg, rgba(192,192,192,0.06) 0%, rgba(160,170,180,0.06) 50%, rgba(140,150,165,0.06) 100%), linear-gradient(145deg, #2a2a2e, #1e1e22)`
@@ -120,8 +155,8 @@ export default function SolanaInfoPopup({
               <span className={`text-sm font-semibold ${darkMode ? 'text-gray-400' : 'text-gray-500'}`}>
                 Status
               </span>
-              <span className="text-sm font-semibold text-green-500">
-                Identity Committed
+              <span className={`text-sm font-semibold ${txSignature ? 'text-green-500' : 'text-orange-500'}`}>
+                {txSignature ? 'Identity Committed' : 'Not Committed'}
               </span>
             </div>
             <div style={{ borderTop: `1px solid ${darkMode ? 'rgba(255,255,255,0.06)' : 'rgba(0,0,0,0.06)'}` }} />
@@ -131,7 +166,7 @@ export default function SolanaInfoPopup({
                 Timestamp
               </span>
               <span className={`text-sm font-semibold ${darkMode ? 'text-gray-200' : 'text-gray-800'}`}>
-                {timestamp}
+                {loading ? 'Loading…' : timestamp}
               </span>
             </div>
           </div>
@@ -142,16 +177,26 @@ export default function SolanaInfoPopup({
               Transaction Signatures
             </h3>
             <div className="space-y-2">
-              {mockSignatures.map((sig, i) => (
-                <div
-                  key={i}
-                  className={`rounded-lg px-3 py-2 font-mono text-xs break-all ${
+              {txSignature ? (
+                <a
+                  href={`https://explorer.solana.com/tx/${txSignature}?cluster=devnet`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={`rounded-lg px-3 py-2 font-mono text-xs break-all block ${
                     darkMode ? 'bg-white/5 text-gray-300' : 'bg-black/[0.03] text-gray-700'
                   }`}
                 >
-                  {sig}
+                  {displaySignature(txSignature)}
+                </a>
+              ) : (
+                <div
+                  className={`rounded-lg px-3 py-2 text-xs ${
+                    darkMode ? 'bg-white/5 text-gray-400' : 'bg-black/[0.03] text-gray-500'
+                  }`}
+                >
+                  No transactions found yet.
                 </div>
-              ))}
+              )}
             </div>
           </div>
 

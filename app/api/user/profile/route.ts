@@ -37,6 +37,8 @@ export async function GET(req: NextRequest) {
         hasVoiceClone: !!user.voice_id,
         blockchainCommitted: !!user.blockchain_committed_at,
         walletAddress: user.wallet_address,
+        solanaTxHash: user.solana_tx_hash,
+        blockchainCommittedAt: user.blockchain_committed_at,
         createdAt: user.created_at,
         lastLoginAt: user.last_login_at,
       },

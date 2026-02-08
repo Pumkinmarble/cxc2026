@@ -90,6 +90,16 @@ export default function BlockchainCommit({ twinData, onSuccess, onError, darkMod
         // Wait for confirmation
         await connection.confirmTransaction(signature, 'confirmed');
 
+        // Persist commitment for the user
+        await fetch('/api/blockchain/commit/confirm', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            walletAddress: publicKey.toBase58(),
+            signature,
+          }),
+        });
+
         setTxSignature(signature);
         onSuccess?.(signature);
       }
