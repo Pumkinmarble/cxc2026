@@ -1,22 +1,13 @@
-# Dependencies
 node_modules/
 .pnp
 .pnp.js
-
-# Testing
 coverage/
 *.test.ts.snap
-
-# Next.js
 .next/
 out/
 build/
 dist/
-
-# Production
 *.tgz
-
-# Environment variables (NEVER commit these!)
 .env
 .env.local
 .env*.local
@@ -24,19 +15,13 @@ dist/
 .env.test.local
 .env.production.local
 *.env
-
-# Debug logs
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 pnpm-debug.log*
-
-# OS files
 .DS_Store
 *.pem
 Thumbs.db
-
-# IDE
 .vscode/
 .idea/
 *.swp
@@ -44,15 +29,9 @@ Thumbs.db
 *~
 .sublime-project
 .sublime-workspace
-
-# Vercel
 .vercel
-
-# TypeScript
 *.tsbuildinfo
 next-env.d.ts
-
-# Python (for any Python scripts)
 __pycache__/
 *.py[cod]
 *$py.class
@@ -60,26 +39,17 @@ __pycache__/
 .Python
 venv/
 ENV/
-
-# AI Module test results
 AI/test-results-*.txt
-
-# Voice cloning samples (large files)
 voice_module/voice_profiles/*.mp3
 voice_module/voice_profiles/*.wav
-
-# 3D Avatar models (can be large)
 ui/experimentation/avatar/assets/*.glb
 ui/experimentation/avatar/public/avatars/*.glb
-
-# Temporary files
 *.tmp
 *.temp
 .cache/
-
-# User-generated content
 quiz-answers/
 diary-entries/
 voice-recordings/
-
+*.md
 /experiments
+.gitignore

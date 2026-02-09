@@ -48,10 +48,8 @@
     "node_modules",
     "dist",
     ".next",
-    "ui/experimentation",
-    "experiments",
+    "experiments/experimentation",
     "voice_module",
-    "auth_module",
-    "solana_module"
+    "auth_module"
   ]
 }
