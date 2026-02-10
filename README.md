@@ -1,10 +1,26 @@
-# Ditto
+
+<p align="center" style="margin-top:4px; margin-bottom:-1000px;">
+  <img width="354" height="326" alt="dittologo"
+      <img width="519" height="480" alt="dittologoface" src="https://github.com/user-attachments/assets/966d2b01-b515-4ba6-b34c-51b92148714e" />
+
+
+<h1 align="center">Ditto</h1>
+<p align="center">
+  Your AI twin that lives forever.
+</p>
+
+
 
 **Create your AI-powered digital twin that lives forever.**
 
-Ditto lets you build a personalized AI that thinks, speaks, and responds the way you do — grounded in your real personality, memories, and voice. Ask it questions, and it answers as *you* would.
+Ditto lets you build a personalized AI that thinks, speaks, and responds the way you do — grounded in your real personality, memories, and voice. Ask it questions, and it answers as *you* would. The longer you go, the more Ditto will shape to become you.
 
-Built for [CxC 2026](https://www.cxc.com/).
+Winner of [CxC 2026](https://www.cxc.com/) - Best use of ElevenLabs
+
+<img width="1710" height="983" alt="image" src="https://github.com/user-attachments/assets/111b84c4-92f7-4605-90c4-09c6cfccb364" />
+
+https://github.com/user-attachments/assets/7925fcf2-5d81-42ae-b475-d17ff6ede40a 
+
 
 ## How It Works
 
@@ -13,7 +29,7 @@ Users build their twin through three inputs:
 | Input | What it does |
 |---|---|
 | **Personality Quiz** | 54-question assessment across 5 cognitive dimensions (MBTI + Identity) |
-| **Diary Journaling** | Written or voice-transcribed entries that become long-term searchable memory |
+| **Diary Journaling** | Daily written or voice-transcribed entries that become long-term searchable memory |
 | **Voice Recording** | Audio sample used to clone the user's real speaking voice |
 
 Once built, anyone can talk to the twin and get responses that reflect the real person's personality, memories, and voice.
@@ -99,32 +115,6 @@ See [`.env.example`](.env.example) for all required keys:
 - **ElevenLabs** — Voice cloning and TTS
 - **Solana RPC** — Blockchain (optional)
 
-## Project Structure
-
-```
-app/
-  page.tsx                  # Root (redirects to /login)
-  login/page.tsx            # Auth0 login page
-  home/page.tsx             # Main dashboard
-  gallery/page.tsx          # Community gallery
-  home/components/          # UI components (popups, avatar, toast)
-  api/                      # Next.js API routes
-AI/
-  backboard-client.ts       # Backboard.io API client
-  echo-service.ts           # Core AI service
-  echo-from-db.ts           # DB-integrated AI initialization
-solana_module/
-  components/               # Wallet connection, blockchain commit
-  lib/                      # Solana utilities
-lib/
-  auth.ts                   # Auth0 helpers
-  db.ts                     # Supabase database utilities
-  supabase.ts               # Supabase client configuration
-  session.ts                # Session management
-utils/
-  personalityTest.ts        # Quiz scoring and MBTI type calculation
-```
-
 ## Scripts
 
 ```bash
@@ -133,7 +123,8 @@ npm run build     # Production build
 npm run start     # Start production server
 npm run lint      # Run ESLint
 ```
-
+## Future implementations
+- A community market where people (like celebrities, professors, politicians) can create and post their AI twins. Allowing people to talk to them as if they were face-to-face in real life. It can be charged via Solona or other forms of currency.
 ## Team
 
 - [Harrison Yu](https://www.linkedin.com/in/harrisonyuuw/)
@@ -144,3 +135,5 @@ npm run lint      # Run ESLint
 ## License
 
 MIT
+
+DISCLAIMER: We do not condone any immoral and improper use of Ditto. Please always use responsibly.
