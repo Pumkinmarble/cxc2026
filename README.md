@@ -17,8 +17,6 @@ Ditto lets you build a personalized AI that thinks, speaks, and responds the way
 
 Winner of [CxC 2026](https://www.cxc.com/) - Best use of ElevenLabs
 
-<img width="1710" height="983" alt="image" src="https://github.com/user-attachments/assets/111b84c4-92f7-4605-90c4-09c6cfccb364" />
-
 https://github.com/user-attachments/assets/7925fcf2-5d81-42ae-b475-d17ff6ede40a 
 
 
