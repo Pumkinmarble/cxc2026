@@ -132,6 +132,6 @@ npm run lint      # Run ESLint
 
 ## License
 
-MIT
+AGPL-3.0 license
 
-DISCLAIMER: We do not condone any immoral and improper use of Ditto. Please always use responsibly.
+DISCLAIMER: We do not condone any immoral and improper use of Ditto. Please use responsibly.
